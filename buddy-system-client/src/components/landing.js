@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 
 
-export default function Landing() {
+export default function Landing({currentUser, setCurrentUser}) {
 
     //State
     const [loginFields, setLoginFields] = useState({
@@ -15,7 +15,15 @@ export default function Landing() {
     }
 
     const test = () => {
-        console.log("have a nice day")
+        // fetch('http://localhost:3000/test', {
+        //     credentials: "include"
+        // })
+        // .then((res) => { 
+        //     console.log(res)
+        //     return res.json()})
+        // .then(console.log)
+        console.log(currentUser.id)
+
     }
 
     const submitLogin = (e, loginFields) => {
@@ -24,6 +32,7 @@ export default function Landing() {
 
         fetch('http://localhost:3000/login', {
             method: 'POST',
+            credentials: 'include',
             headers: {'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -32,7 +41,7 @@ export default function Landing() {
             })
         })
         .then(res => res.json())
-        .then(user => console.log(user))
+        .then(user => setCurrentUser(user))
     }
 
     return (

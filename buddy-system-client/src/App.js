@@ -16,10 +16,12 @@ function App() {
 
   // Effects
   useEffect(() => {
-    fetch('http://localhost:3000/whoami')
-    .then((response) => {
+    fetch('http://localhost:3000/whoami', {
+      credentials: 'include'
+    }).then((response) => {
       if (response.ok) {
         response.json()
+        //.then(user => console.log(user))
         .then(user => setCurrentUser(user))
       }
     });
@@ -29,10 +31,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header currentUser= {currentUser} setCurrentUser={setCurrentUser}/>
       <Routes>
-        <Route path = '/' element = {<Landing currentUser = {currentUser} />} />
-        <Route path = 'home' element = {<Home currentUser = {currentUser}/>} />
+        <Route path = '/' element = {<Landing currentUser = {currentUser} setCurrentUser = {setCurrentUser} />} />
+        <Route path = '/home' element = {<Home currentUser = {currentUser}/>} />
         <Route path = '/profile' element = {<Profile currentUser = {currentUser}/>} />
       </Routes>
     </div>

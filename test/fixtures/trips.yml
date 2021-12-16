@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  start: 2021-12-16
+  end: 2021-12-16
+  longitude: 1.5
+  latitude: 1.5
+  minimum_participants: 
+  current_participants: 
+  max_participants: 
+  host_user: 
+  requirements: MyText
+
+two:
+  title: MyString
+  description: MyText
+  start: 2021-12-16
+  end: 2021-12-16
+  longitude: 1.5
+  latitude: 1.5
+  minimum_participants: 
+  current_participants: 
+  max_participants: 
+  host_user: 
+  requirements: MyText
