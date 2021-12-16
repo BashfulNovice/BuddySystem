@@ -3,10 +3,16 @@ Rails.application.routes.draw do
 
   #login/logout/whoami
 
-  post "/login", to: "sessions#create"
+  post '/login', to: 'sessions#create'
+
+  #get '/login', to: 'sessions#create'
 
   delete "/logout", to: "sessions#destroy"
 
   get "/whoami", to: "sessions#show"
+
+  #users
+
+  get '/users', to: "users#index"
 
 end

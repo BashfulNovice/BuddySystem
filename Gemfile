@@ -47,3 +47,5 @@ gem 'bcrypt'
 
 #for serializers
 gem 'active_model_serializers'
+
+gem 'rack-cors'

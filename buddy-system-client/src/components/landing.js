@@ -14,18 +14,25 @@ export default function Landing() {
         setLoginFields({...loginFields, [e.target.name]: e.target.value})
     }
 
+    const test = () => {
+        console.log("have a nice day")
+    }
+
     const submitLogin = (e, loginFields) => {
         e.preventDefault()
         const {email, password} = loginFields
 
         fetch('http://localhost:3000/login', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
                 email, 
                 password
             })
         })
+        .then(res => res.json())
+        .then(user => console.log(user))
     }
 
     return (
@@ -57,6 +64,7 @@ export default function Landing() {
                 <button>Log In</button>
             </form>
           </div>
+          <button onClick = {test} >test</button>
         </div>
     )
 }
