@@ -3,7 +3,7 @@ import '../component-styles/home.css'
 import MapContainer from './map-container'
 import TripCard from './trip-card'
 
-export default function Home() {
+export default function Home({currentUser}) {
 
     //State
     const [tripList, setTripList] = useState([])
@@ -37,10 +37,34 @@ export default function Home() {
         setTripData({...tripData, [e.target.name]: e.target.value})
     }
 
+    const createNewTrip = (e, tripData) => {
+        
+            e.preventDefault()
+            const {title, latitude, longitude} = tripData
+            const host_user = currentUser
+    
+            fetch('http://localhost:3000/trips', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title, 
+                    latitude,
+                    longitude,
+                    host_user,
+                })
+            })
+            .then(res => res.json())
+            .then(user => console.log(user))
+            setCreating(!creating)
+        }
+    
+
     const renderForm = () => {
         if (creating) {
-            return <div className = "trip-add-form">
-            <form>
+            return <div className = "trip-add-form-container">
+            <form className = "trip-add-form" onSubmit = {(e) => createNewTrip(e, tripData)}>
                 <label for = "make-title">Trip Title</label>
                     <input
                         type='text'
@@ -90,6 +114,7 @@ export default function Home() {
                 </div>
                 <div className = "trip-list">
                     <h3>All Trips</h3>
+                    <button onClick = {setCreating(!creating)}>Add Trip</button>
                     <div className = "add-trip">Add</div>
                     {displayedTrips.map(trip => <TripCard key = {trip.id} trip = {trip} />)}
                     <button onClick = {homeTest}>Home Test</button>

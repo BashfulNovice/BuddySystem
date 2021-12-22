@@ -13,7 +13,7 @@ const MapContainer = ({tripList}) => {
     };
 
     return (
-        <LoadScript googleMapsApiKey={'AIzaSyA90hDdMDhEUHUemjbTsoHDBfA4oMTora8'}>
+        <LoadScript googleMapsApiKey={''}>
             <GoogleMap
                 mapContainerStyle={mapStyles}
                 zoom={14}

@@ -38,7 +38,7 @@ export default function Profile({currentUser}) {
     
     // Functions
     const testProfile = () => {
-        console.log(formData)
+        console.log(process.env.REACT_APP_GOOGLE_API_KEY)
     }
 
     const toggleEdit = () => {
