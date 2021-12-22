@@ -106,8 +106,8 @@ export default function Landing({currentUser, setCurrentUser}) {
                         placeholder='Password'
                         onChange={(e) => handleLogInChange(e)}>
                     </input>
-                <button>Log In</button>
-            </form>
+                    <button>Log In</button>
+                </form>
           </div>
           <div className = "signup-container">
               <form className = "signup-form" onSubmit={(e) => submitSignup(e, registerData)}>

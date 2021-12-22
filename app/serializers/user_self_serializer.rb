@@ -1,5 +1,5 @@
 class UserSelfSerializer < ActiveModel::Serializer
-  attributes :id, :name, :age, :gender, :city, :activity, :bio, :profile_pic
+  attributes :id, :name, :age, :gender, :city, :activity, :bio, :profile_pic, :email
 
-  has_many :trips
+  has_many :trips, serializer: TripSerializer
 end
