@@ -3,17 +3,17 @@ import '../component-styles/home.css'
 import MapContainer from './map-container'
 import TripCard from './trip-card'
 
-export default function Home({currentUser}) {
+export default function Home({currentUser, rerender, setRerender, tripList, setTripList}) {
 
     //State
-    const [tripList, setTripList] = useState([])
-    const [displayedTrips, setDisplayedTrips] = useState([])
+    // const [displayedTrips, setDisplayedTrips] = useState([])
     const [creating, setCreating] = useState(false)
     const [tripData, setTripData] = useState({
         title: '',
         latitude: '',
         longitude: ''
     })
+
 
     useEffect(() => {
         fetch("http://localhost:3000/trips", {
@@ -22,15 +22,17 @@ export default function Home({currentUser}) {
         .then(res => res.json())
         .then((trips) => {
             setTripList(trips)
-            setDisplayedTrips(trips)
+            //setDisplayedTrips(trips)
         })
-
-
     }, []);
 
     //Functions/methods
     const homeTest = () => {
         console.log(tripList[0].longitude)
+    }
+
+    const toggleCreate = () => {
+        setCreating(!creating)
     }
 
     const handleTripChange = (e) => {
@@ -41,7 +43,7 @@ export default function Home({currentUser}) {
         
             e.preventDefault()
             const {title, latitude, longitude} = tripData
-            const host_user = currentUser
+            const host_user = currentUser.id
     
             fetch('http://localhost:3000/trips', {
                 method: 'POST',
@@ -56,14 +58,17 @@ export default function Home({currentUser}) {
                 })
             })
             .then(res => res.json())
-            .then(user => console.log(user))
-            setCreating(!creating)
+            .then((user) => {
+                console.log(user)
+                // setTripList([...tripList, user])
+                // toggleCreate()
+            })
         }
     
 
     const renderForm = () => {
         if (creating) {
-            return <div className = "trip-add-form-container">
+            return (<div className = "trip-add-form-container">
             <form className = "trip-add-form" onSubmit = {(e) => createNewTrip(e, tripData)}>
                 <label for = "make-title">Trip Title</label>
                     <input
@@ -100,8 +105,9 @@ export default function Home({currentUser}) {
                     </input>
                     <button>Create Trip!</button>
             </form>
-        </div>
+        </div>)
         }
+
     }
 
 
@@ -114,13 +120,13 @@ export default function Home({currentUser}) {
                 </div>
                 <div className = "trip-list">
                     <h3>All Trips</h3>
-                    <button onClick = {setCreating(!creating)}>Add Trip</button>
+                    <button onClick = {toggleCreate}>Add Trip</button>
                     <div className = "add-trip">Add</div>
-                    {displayedTrips.map(trip => <TripCard key = {trip.id} trip = {trip} />)}
+                    {tripList.map(trip => <TripCard tripList = {tripList} setTripList = {setTripList} currentUser = {currentUser} key = {trip.id} trip = {trip} />)}
                     <button onClick = {homeTest}>Home Test</button>
                 </div>
             </div>
-            {renderForm}
+            {renderForm()}
         </div>
     )
     

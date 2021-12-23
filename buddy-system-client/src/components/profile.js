@@ -3,10 +3,10 @@ import '../component-styles/profile.css'
 import TripCard from './trip-card'
 
 
-export default function Profile({currentUser}) {
+export default function Profile({currentUser, rerender, setRerender, tripList, setTripList, profileList}) {
 
     //State
-
+    
     const [editing, setEditing] = useState(false)
     const [displayedUser, setDisplayedUser] = useState({})
     const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ export default function Profile({currentUser}) {
                 console.log(user)})
           }
         });
-    }, [currentUser]);
+    }, [currentUser, rerender]);
 
     
     // Functions
@@ -188,7 +188,7 @@ export default function Profile({currentUser}) {
             <div className = 'profile-trips-container'>
                 <h2>Trips You're Attending</h2>
                 {/* <TripCard trip = {displayedUser.trips[0]}></TripCard> */}
-                {displayedUser.trips.map(trip => <TripCard key = {trip.id} trip = {trip} />)}
+                {profileList.map(trip => <TripCard tripList = {tripList} setTripList = {setTripList} rerender = {rerender} setRerender = {setRerender} currentUser = {currentUser} key = {trip.id} trip = {trip} />)}
                 <button onClick = {testProfile}>Profile test</button>
             </div>
             

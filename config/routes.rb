@@ -29,4 +29,14 @@ Rails.application.routes.draw do
 
   get '/trips', to: "trips#index"
 
+  post '/trips', to: "trips#create"
+
+  delete '/trips/:id', to: "trips#destroy"
+
+  #Participant routes
+
+  post '/participants', to: "participants#create"
+
+  delete 'participants/:id', to: "participants#destroy"
+
 end

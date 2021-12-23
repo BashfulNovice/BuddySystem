@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     def profile
         user = User.find(session[:user_id])
-        render json: user, include: ['trips', 'trips.host','trips.users'],  serializer: UserSelfSerializer
+        render json: user, include: ['trips', 'trips.host','trips.users', 'trips.participants'],  serializer: UserSelfSerializer
     end
 
     def test

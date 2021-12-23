@@ -3,4 +3,5 @@ class TripSerializer < ActiveModel::Serializer
 
   belongs_to :host
   has_many :users
+  has_many :participants
 end

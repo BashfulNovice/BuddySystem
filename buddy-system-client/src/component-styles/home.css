@@ -18,12 +18,20 @@
 
 .trip-add-form-container {
     position: fixed;
+    top: 0px;
     width: 100%;
+    left: 0px;
     height: 100%;
-    background-color: rgba(68, 68, 236, 0.5);
+    background-color: rgba(163, 163, 167, 0.7);
 }
 
 .trip-add-form {
     background-color: paleturquoise;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    top: 25%;
+    height: 50%;
+    margin: auto;
 }
 
