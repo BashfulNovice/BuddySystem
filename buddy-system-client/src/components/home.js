@@ -58,12 +58,9 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                 })
             })
             .then(res => res.json())
-            .then((user) => {
-                console.log(user)
-                // setTripList([...tripList, user])
-                // toggleCreate()
-            })
+            .then(trip => setTripList([...tripList, trip]))
         }
+        
     
 
     const renderForm = () => {
