@@ -4,7 +4,12 @@ export default function TripCard({trip, currentUser, rerender, setRerender, trip
 
 
 const testCard = () => {
-    console.log(trip.users[0])
+    console.log(currentUser)
+    console.log(trip)
+}
+
+const participants = () => {
+    return trip.users
 }
 
 const joinTrip = () => {
@@ -19,6 +24,14 @@ const joinTrip = () => {
             trip_id: trip.id
         })
     })
+    .then(res => res.json())
+    .then((trip) => {
+        let temp = [...tripList]
+        let to_be_replaced = temp.find(element => element.id ===3)
+        let index = temp.indexOf(to_be_replaced)
+        temp[index] = trip
+        setTripList(temp)
+    })
 }
 
 const leaveTrip = () => {
@@ -27,6 +40,14 @@ const leaveTrip = () => {
     fetch(`http://localhost:3000/participants/${participant_id}`, {
         method: 'DELETE',
         credentials: 'include',
+    })
+    .then(res => res.json())
+    .then((trip) => {
+        let temp = [...tripList]
+        let to_be_replaced = temp.find(element => element.id ===3)
+        let index = temp.indexOf(to_be_replaced)
+        temp[index] = trip
+        setTripList(temp)
     })
 }
 
@@ -50,10 +71,18 @@ const renderDelete = () => {
     }
 }
 
-
-
-
-
+const renderJoin = () => {
+    if (participant) {
+        return <button onClick = {leaveTrip}>Leave Trip</button>
+    }
+    else if(trip.current_participants === trip.max_participants){
+        return <p>Trip Full</p>
+    }
+    else {
+        return <button onClick = {joinTrip}>Join Trip</button>
+    }
+}
+let participant = trip.users.length > 0 &&trip.users.find(user => user.id === currentUser.id)
 return (
     <div className = "trip-card">
         <h2>{trip.title}</h2>
@@ -66,7 +95,8 @@ return (
         <p>Minimum Participants: {trip.minimum_participants}</p>
         <ul className = 'participant-list'>Curent Participants: {trip.users.length}</ul>
         {trip.users.map(user => <li key = {user.id}>{user.name}</li>)}
-        {trip.users.find(user => user.id = currentUser.id)? <button onClick = {leaveTrip}>Leave Trip</button> : <button onClick = {joinTrip}>Join Trip</button>}
+        {renderJoin()}
+        {/* {trip.users.find(user => user.id = currentUser.id)? <button onClick = {leaveTrip}>Leave Trip</button> : <button onClick = {joinTrip}>Join Trip</button>} */}
         <button onClick = {testCard}>Card Test!</button>
     </div>
 

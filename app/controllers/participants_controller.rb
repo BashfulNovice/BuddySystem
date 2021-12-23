@@ -2,15 +2,17 @@ class ParticipantsController < ApplicationController
 
     def create 
         participant = Participant.create(participantParams)
-        render json: participant
+        trip = Trip.find(participant.trip_id)
+        trip.update(current_participants: trip.participants.count)
+        render json: trip
     end
 
     def destroy 
         participant = Participant.find(params[:id])
         trip = Trip.find(participant.trip_id)
         participant.destroy
-        participant.update(current_participants: trip.participants.count)
-        head :no_content
+        trip.update(current_participants: trip.participants.count)
+        render json: trip
     end
 
     private

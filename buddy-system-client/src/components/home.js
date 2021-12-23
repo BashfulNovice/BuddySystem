@@ -11,24 +11,30 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
     const [tripData, setTripData] = useState({
         title: '',
         latitude: '',
-        longitude: ''
+        longitude: '',
+        description: '',
+        requirements: '',
+        max_participants: '',
+        minimum_participants: '',
+        start: '',
+        end: ''
     })
 
 
-    useEffect(() => {
-        fetch("http://localhost:3000/trips", {
-            credentials: "include"
-        })
-        .then(res => res.json())
-        .then((trips) => {
-            setTripList(trips)
-            //setDisplayedTrips(trips)
-        })
-    }, []);
+    // useEffect(() => {
+    //     fetch("http://localhost:3000/trips", {
+    //         credentials: "include"
+    //     })
+    //     .then(res => res.json())
+    //     .then((trips) => {
+    //         setTripList(trips)
+    //         //setDisplayedTrips(trips)
+    //     })
+    // }, []);
 
     //Functions/methods
     const homeTest = () => {
-        console.log(tripList[0].longitude)
+        console.log(tripList)
     }
 
     const toggleCreate = () => {
@@ -42,7 +48,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
     const createNewTrip = (e, tripData) => {
         
             e.preventDefault()
-            const {title, latitude, longitude} = tripData
+            const {title, latitude, longitude, description, requirements, max_participants, minimum_participants, start, end} = tripData
             const host_user = currentUser.id
     
             fetch('http://localhost:3000/trips', {
@@ -55,6 +61,12 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                     latitude,
                     longitude,
                     host_user,
+                    description,
+                    requirements,
+                    max_participants,
+                    minimum_participants,
+                    start,
+                    end,
                 })
             })
             .then(res => res.json())
@@ -65,7 +77,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
 
     const renderForm = () => {
         if (creating) {
-            return (<div className = "trip-add-form-container">
+            return (<div className = "trip-add-form-background">
             <form className = "trip-add-form" onSubmit = {(e) => createNewTrip(e, tripData)}>
                 <label for = "make-title">Trip Title</label>
                     <input
@@ -96,9 +108,67 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                         id = 'make-lng'
                         name = 'longitude'
                         value={tripData.longitude}
-                        placeholder='Name'
+                        placeholder='Longitude'
                         onChange={(e) => handleTripChange(e)}
                         >
+                    </input>
+                <label for = "make-description">Trip Description:</label>
+                    <input
+                        type='text'
+                        className='input-field'
+                        id = 'make-description'
+                        name = 'description'
+                        value={tripData.description}
+                        placeholder='description'
+                        onChange={(e) => handleTripChange(e)}
+                        >
+                    </input>
+                <label for = "make-requirements">Participant Requirements:</label>
+                    <input
+                        type='text'
+                        className='input-field'
+                        id = 'make-requirements'
+                        name = 'requirements'
+                        value={tripData.requirements}
+                        placeholder='Requirements'
+                        onChange={(e) => handleTripChange(e)}
+                        >
+                    </input>
+                <label for="max_participants">Max Number of Participants:</label>
+                    <input 
+                        type="number" 
+                        id="max_participants" 
+                        name="max_participants" 
+                        min="2" max="25"
+                        className = "input-field"
+                        value = {tripData.max_participants}
+                        placeholder = "Max Participants"
+                        onChange={(e) => handleTripChange(e)}
+                        >  
+                    </input>
+                <label for="minimum_participants">Max Number of Participants:</label>
+                    <input 
+                        type="number" 
+                        id="minimum_participants" 
+                        name="minimum_participants" 
+                        min="2" max="25"
+                        className = "input-field"
+                        value = {tripData.minimum_participants}
+                        placeholder = "Minimum Participants"
+                        onChange={(e) => handleTripChange(e)}
+                        >  
+                    </input>
+                <label for="make-start">Start date:</label>
+                    <input type="date" id="make-start" name="start"
+                        value={tripData.start}
+                        min="2022-01-01" max="2023-12-30"
+                        onChange={(e) => handleTripChange(e)}>
+                    </input>
+                <label for="make-end">Start date:</label>
+                    <input type="date" id="make-start" name="end"
+                        value={tripData.end}
+                        min="2022-01-02" max="2023-12-31"
+                        onChange={(e) => handleTripChange(e)}>
                     </input>
                     <button>Create Trip!</button>
             </form>

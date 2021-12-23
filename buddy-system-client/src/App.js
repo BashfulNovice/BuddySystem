@@ -39,15 +39,19 @@ function App() {
   // Functions
 
   const topLevelTest = () => {
-    let temp = [...tripList]
-    let temp2 = temp.filter(trip => trip.users.find(user => user.id == currentUser.id))
-    console.log(temp2)
+    // let temp = [...tripList]
+    // let to_be_replaced = temp.find(trip => trip.id ===3)
+    // let index = temp.indexOf(to_be_replaced)
+    // console.log(temp)
+    // console.log(index)
+    console.log(tripList)
   }
 
   const profile_filter = () => {
+    if (currentUser){
     let temp = tripList.filter(trip => trip.users.find(user => user.id == currentUser.id))
     return temp
-  }
+  }}
 
   return (
     <div className="App">
