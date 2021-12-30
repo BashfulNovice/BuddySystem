@@ -18,6 +18,11 @@ class TripsController < ApplicationController
         head :no_content
     end
 
+    def show
+        trip = Trip.find(params[:id])
+        render json: trip, include: ['messages', 'messages.sender'], serializer: TripMessagesSerializer
+    end
+
     private
 
     def tripParams

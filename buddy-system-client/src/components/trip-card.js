@@ -102,10 +102,10 @@ return (
         {trip.users.map(user => <li><Link to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></li>)}
         </ul>
         {renderJoin()}
+        <p><Link to = {`/trip/${trip.id}`}>Trip Details</Link></p>
         {/* {trip.users.find(user => user.id = currentUser.id)? <button onClick = {leaveTrip}>Leave Trip</button> : <button onClick = {joinTrip}>Join Trip</button>} */}
         <button onClick = {testCard}>Card Test!</button>
     </div>
-
 
 
 

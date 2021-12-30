@@ -33,10 +33,16 @@ Rails.application.routes.draw do
 
   delete '/trips/:id', to: "trips#destroy"
 
+  get '/trips/:id', to: "trips#show"
+
   #Participant routes
 
   post '/participants', to: "participants#create"
 
   delete 'participants/:id', to: "participants#destroy"
+
+  #message routes
+
+  post '/messages', to: 'messages#create'
 
 end

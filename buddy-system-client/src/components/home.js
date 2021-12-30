@@ -36,7 +36,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
     const homeTest = () => {
         console.log(tripList)
     }
-
+    
     const toggleCreate = () => {
         setCreating(!creating)
     }
@@ -78,6 +78,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
     const renderForm = () => {
         if (creating) {
             return (<div className = "trip-add-form-background">
+            <button onClick = {toggleCreate}>Cancel</button>
             <form className = "trip-add-form" onSubmit = {(e) => createNewTrip(e, tripData)}>
                 <label for = "make-title">Trip Title</label>
                     <input

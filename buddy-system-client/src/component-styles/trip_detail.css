@@ -1,0 +1,19 @@
+.trip-detail-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.trip-info {
+    width: 45%;
+    border: 2px solid black;
+
+}
+
+.trip-message-container {
+    width: 45%;
+    border: 2px solid black;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}

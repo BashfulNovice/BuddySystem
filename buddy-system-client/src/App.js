@@ -7,6 +7,7 @@ import Header from './components/Header.js'
 import Profile from'./components/profile.js'
 import Home from './components/home.js'
 import UserDetail from './components/userDetail';
+import TripDetail from './components/tripDetail';
 
 
 
@@ -61,7 +62,8 @@ function App() {
         <Route path = '/' element = {<Landing currentUser = {currentUser} setCurrentUser = {setCurrentUser} />} />
         <Route path = '/home' element = {<Home tripList = {tripList} setTripList = {setTripList} rerender = {rerender} setRerender = {setRerender} currentUser = {currentUser}/>} />
         <Route path = '/profile' element = {<Profile profileList={profile_filter()} tripList = {tripList} setTripList = {setTripList} rerender = {rerender} setRerender = {setRerender} currentUser = {currentUser}/>} />
-        <Route path = '/user/:user_id' element = {<UserDetail />} />
+        <Route path = '/user/:user_id' element = {<UserDetail currentUser = {currentUser} />} />
+        <Route path = '/trip/:trip_id' element = {<TripDetail currentUser = {currentUser}/>} />
       </Routes>
       <button onClick = {topLevelTest}>TopLevelTest</button>
     </div>
