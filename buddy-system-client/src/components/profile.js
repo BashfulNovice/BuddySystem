@@ -38,7 +38,7 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
     
     // Functions
     const testProfile = () => {
-        console.log(process.env.REACT_APP_GOOGLE_API_KEY)
+        console.log(tripList)
     }
 
     const toggleEdit = () => {

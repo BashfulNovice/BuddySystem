@@ -1,4 +1,5 @@
 //import {useState, useEffect} from 'react'
+import { Link } from "react-router-dom";
 import '../component-styles/trip-card.css'
 export default function TripCard({trip, currentUser, rerender, setRerender, tripList, setTripList}) {
 
@@ -27,11 +28,13 @@ const joinTrip = () => {
     .then(res => res.json())
     .then((trip) => {
         let temp = [...tripList]
-        let to_be_replaced = temp.find(element => element.id ===3)
+        let to_be_replaced = temp.find(element => element.id ===trip.id)
         let index = temp.indexOf(to_be_replaced)
         temp[index] = trip
         setTripList(temp)
     })
+    // .then(setRerender(!rerender))
+    //.then(data => console.log(data))
 }
 
 const leaveTrip = () => {
@@ -44,11 +47,13 @@ const leaveTrip = () => {
     .then(res => res.json())
     .then((trip) => {
         let temp = [...tripList]
-        let to_be_replaced = temp.find(element => element.id ===3)
+        let to_be_replaced = temp.find(element => element.id ===trip.id)
         let index = temp.indexOf(to_be_replaced)
         temp[index] = trip
         setTripList(temp)
     })
+    // .then(setRerender(!rerender))
+    //.then(data => console.log(data))
 }
 
 const deleteTrip = () => {
@@ -93,8 +98,9 @@ return (
         <p>Details: {trip.description}</p>
         <p>Maximum Participants: {trip.max_participants}</p>
         <p>Minimum Participants: {trip.minimum_participants}</p>
-        <ul className = 'participant-list'>Curent Participants: {trip.users.length}</ul>
-        {trip.users.map(user => <li key = {user.id}>{user.name}</li>)}
+        <ul className = 'participant-list'>Curent Participants: {trip.users.length}
+        {trip.users.map(user => <li><Link to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></li>)}
+        </ul>
         {renderJoin()}
         {/* {trip.users.find(user => user.id = currentUser.id)? <button onClick = {leaveTrip}>Leave Trip</button> : <button onClick = {joinTrip}>Join Trip</button>} */}
         <button onClick = {testCard}>Card Test!</button>

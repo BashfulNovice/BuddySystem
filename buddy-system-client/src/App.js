@@ -6,6 +6,7 @@ import Landing from './components/landing.js'
 import Header from './components/Header.js'
 import Profile from'./components/profile.js'
 import Home from './components/home.js'
+import UserDetail from './components/userDetail';
 
 
 
@@ -34,7 +35,7 @@ function App() {
     }).then(res => res.json())
       .then(trips => setTripList(trips))
   }
-  , []);
+  , [rerender]);
 
   // Functions
 
@@ -49,7 +50,7 @@ function App() {
 
   const profile_filter = () => {
     if (currentUser){
-    let temp = tripList.filter(trip => trip.users.find(user => user.id == currentUser.id))
+    let temp = tripList.filter(trip => trip.users.find(user => user.id === currentUser.id))
     return temp
   }}
 
@@ -60,6 +61,7 @@ function App() {
         <Route path = '/' element = {<Landing currentUser = {currentUser} setCurrentUser = {setCurrentUser} />} />
         <Route path = '/home' element = {<Home tripList = {tripList} setTripList = {setTripList} rerender = {rerender} setRerender = {setRerender} currentUser = {currentUser}/>} />
         <Route path = '/profile' element = {<Profile profileList={profile_filter()} tripList = {tripList} setTripList = {setTripList} rerender = {rerender} setRerender = {setRerender} currentUser = {currentUser}/>} />
+        <Route path = '/user/:user_id' element = {<UserDetail />} />
       </Routes>
       <button onClick = {topLevelTest}>TopLevelTest</button>
     </div>

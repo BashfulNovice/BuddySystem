@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
 
-    def index 
-        users = User.all
-        render json: users
-    end
+    before_action :authenticate_user, only: [:update]
+    before_action :check_user, only: [:show]
+    # def index 
+    #     users = User.all
+    #     render json: users
+    # end
 
     def profile
         user = User.find(session[:user_id])
@@ -16,12 +18,16 @@ class UsersController < ApplicationController
 
     def create
         user = User.create(user_params)
-        render json: user
+        if user.valid?
+            render json: user, status: :created
+        else
+            render json: {errors: user.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def show
         user = User.find(params[:id])
-        render json: user, serializer: UserSelfSerializer
+        render json: user
     end
 
     def update
@@ -35,6 +41,14 @@ class UsersController < ApplicationController
 
     def user_params
         params.permit(:id, :age, :email, :gender, :name, :password, :password_confirmation, :bio, :activity, :city)
+    end
+
+    def authenticate_user
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session[:user_id] == User.find(params[:id]).id
+    end
+
+    def check_user
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
     end
 
 end
