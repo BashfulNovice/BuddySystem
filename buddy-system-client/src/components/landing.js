@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import '../component-styles/landing.css'
 
 
 export default function Landing({currentUser, setCurrentUser}) {
@@ -81,7 +82,7 @@ export default function Landing({currentUser, setCurrentUser}) {
     }
 
     return (
-        <div>
+        <div className = 'landing-page'>
             <div className = "login-container">
                 <form className="login-form" onSubmit={(e) => submitLogin(e, loginFields)}>
                     <label for = "login-email">Email: </label>

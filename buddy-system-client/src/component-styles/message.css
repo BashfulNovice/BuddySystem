@@ -1,0 +1,42 @@
+
+
+.message-item-self {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: 30%;
+    margin-top:7px;
+    margin-bottom:3px;
+    /* border: 2px solid black; */
+}
+
+.message-item-other {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 30%;
+    margin-top:7px;
+    margin-bottom:3px;
+    /* border: 2px solid black; */
+
+}
+
+.message-signature-self {
+    font-size: small;
+    margin: 2px;
+    text-align: right;
+}
+
+.message-signature-other {
+    font-size: small;
+    margin: 2px;
+    text-align: left;
+}
+
+.message-content {
+    font-size: small;
+    background-color: rgb(141, 218, 141);
+    padding: 5px;
+    text-align: left;
+    border-radius: 8px;
+}

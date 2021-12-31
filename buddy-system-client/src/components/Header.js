@@ -19,15 +19,15 @@ export default function Header({currentUser, setCurrentUser}) {
             <ul>
                 {currentUser? 
                     <>
-                        <Link to="/home" ><p>Home</p></Link>
-                        <Link to="/profile" ><p>Profile</p></Link>
-                        <Link to="/" ><p onClick={logOut}>Log Out</p></Link>
+                        <Link className = "link" to="/home" ><p>Home</p></Link>
+                        <Link className = "link" to="/profile" ><p>Profile</p></Link>
+                        <Link className = "link" to="/" ><p onClick={logOut}>Log Out</p></Link>
                     </>
                         :
                     <>
                         <p>Home</p>
                         <p>Profile</p>
-                        <Link to="/" ><p>Log In</p></Link>
+                        <Link className = "link" to="/" ><p>Log In</p></Link>
                     </>
                 }
                 {/* <p className = 'header-item'>Home</p>

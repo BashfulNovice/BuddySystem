@@ -4,16 +4,87 @@
     justify-content: space-around;
 }
 
-.trip-info {
+.trip-info-container {
     width: 45%;
-    border: 2px solid black;
-
+    height: 650px;
+    /* border: 2px solid black; */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color:  rgb(54, 105, 54);
+}
+.trip-info {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgb(206, 238, 206);
+    width:90%;
+    margin: auto;
+    margin-bottom: 20px;
+    overflow: auto;
 }
 
 .trip-message-container {
     width: 45%;
-    border: 2px solid black;
-    overflow: auto;
+    height: 650px;
+    /* border: 2px solid black; */
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
+    background-color:  rgb(54, 105, 54);
+}
+
+.trip-message-list {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgb(206, 238, 206);
+    width:90%;
+    overflow: auto;
+    margin: auto;
+    
+}
+
+.trip-comunication {
+    margin: 10px;
+}
+
+.message-form {
+    margin: 15px;
+}
+
+button {
+    border-radius: 5px;
+}
+
+button:hover {
+    box-shadow: 2px 2px 2px;
+}
+
+.trip-info > h2 {
+    margin: 5px;
+}
+.trip-info > h4 {
+    margin: 5px;
+}
+.trip-info > p {
+    margin: 5px;
+    padding: 5px;
+    border-bottom: 2px solid rgb(12, 49, 12);
+}
+
+.attendees {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.detail-map {
+    width: 90%;
+    margin:auto;
+}
+.attendee{
+    margin-right: 10px;
 }

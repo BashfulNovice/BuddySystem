@@ -65,7 +65,7 @@ function App() {
         <Route path = '/user/:user_id' element = {<UserDetail currentUser = {currentUser} />} />
         <Route path = '/trip/:trip_id' element = {<TripDetail currentUser = {currentUser}/>} />
       </Routes>
-      <button onClick = {topLevelTest}>TopLevelTest</button>
+      {/* <button onClick = {topLevelTest}>TopLevelTest</button> */}
     </div>
   );
 }

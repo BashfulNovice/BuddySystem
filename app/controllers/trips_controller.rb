@@ -20,7 +20,7 @@ class TripsController < ApplicationController
 
     def show
         trip = Trip.find(params[:id])
-        render json: trip, include: ['messages', 'messages.sender'], serializer: TripMessagesSerializer
+        render json: trip, include: ['messages', 'messages.sender', 'host', 'users'], serializer: TripMessagesSerializer
     end
 
     private

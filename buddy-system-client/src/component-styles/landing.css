@@ -1,0 +1,24 @@
+.landing-page {
+    background-image: url("https://www.themandagies.com/wp-content/uploads/2020/09/Beginner-Backpacking-Gear-List-The-Mandagies-1-scaled.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    margin: 0px;
+}
+
+.App {
+    height: 100vh;
+    background-image: url("https://www.themandagies.com/wp-content/uploads/2020/09/Beginner-Backpacking-Gear-List-The-Mandagies-1-scaled.jpg");
+
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
