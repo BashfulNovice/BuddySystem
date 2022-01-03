@@ -6,6 +6,7 @@
     align-items: center;
     height: 50px;
     background-color: navy;
+    width: 100%;
 }
 
 ul {
@@ -34,3 +35,4 @@ ul {
     font-weight: bold;
     /* box-shadow: 5px 4px; */
 }
+

@@ -10,6 +10,8 @@ export default function Landing({currentUser, setCurrentUser}) {
         password: ''
     })
 
+    const [logginIn, setLoggingIn] = useState(false)
+
     const [registerData, setRegisterData] = useState({
         name: '',
         email: '',
@@ -26,6 +28,10 @@ export default function Landing({currentUser, setCurrentUser}) {
 
     const handleSignUpChange = (e) => {
         setRegisterData({...registerData, [e.target.name]: e.target.value})
+    }
+    
+    const toggleLogin = () => {
+        setLoggingIn(!logginIn)
     }
 
     // function used to test values and outputs. 
@@ -83,34 +89,117 @@ export default function Landing({currentUser, setCurrentUser}) {
 
     return (
         <div className = 'landing-page'>
-            <div className = "login-container">
-                <form className="login-form" onSubmit={(e) => submitLogin(e, loginFields)}>
-                    <label for = "login-email">Email: </label>
-                    <input
-                        type='text'
-                        className='input-field'
-                        id = 'login-email'
-                        name = 'email'
-                        required='required'
-                        value={loginFields.email}
-                        placeholder='User Email'
-                        onChange={(e) => handleLogInChange(e)}>
-                    </input>
-                    <label for = "login-password">Password: </label>
-                    <input
-                        type='text'
-                        id ='login-password'
-                        name = 'password'
-                        required='required'
-                        className='input-field'
-                        value={loginFields.password}
-                        placeholder='Password'
-                        onChange={(e) => handleLogInChange(e)}>
-                    </input>
-                    <button>Log In</button>
-                </form>
-          </div>
-          <div className = "signup-container">
+            {!logginIn? <div className = 'title-card'>
+                <h1 className = 'title-text'>It's dangerous to go alone, use the Buddy System.</h1>
+                <button onClick = {toggleLogin}>Login/Sign Up</button>
+                </div> 
+                : 
+                <div className = 'login-signup-card'>is this working?
+                    <div className = "login-container">
+                        <form className="login-form" onSubmit={(e) => submitLogin(e, loginFields)}>
+                            <label for = "login-email">Email: </label>
+                                <input
+                                    type='text'
+                                    className='input-field'
+                                    id = 'login-email'
+                                    name = 'email'
+                                    required='required'
+                                    value={loginFields.email}
+                                    placeholder='User Email'
+                                    onChange={(e) => handleLogInChange(e)}>
+                                </input>
+                                <label for = "login-password">Password: </label>
+                                <input
+                                    type='text'
+                                    id ='login-password'
+                                    name = 'password'
+                                    required='required'
+                                    className='input-field'
+                                    value={loginFields.password}
+                                    placeholder='Password'
+                                    onChange={(e) => handleLogInChange(e)}>
+                                </input>
+                                <button>Log In</button>
+                        </form>
+                    </div>
+                    <h3><span>Or Signup</span></h3>
+                    <div className = "signup-container">
+                        <form className = "signup-form" onSubmit={(e) => submitSignup(e, registerData)}>
+                            <label >Sign Up: </label>
+                            <input value={registerData.name}
+                                onChange = {(e) => handleSignUpChange(e)}
+                                name = "name"
+                                required = 'required'
+                                placeholder = "Full Name"
+                                className = "input-field"/>
+                            <input value={registerData.age}
+                                onChange = {(e) => handleSignUpChange(e)}
+                                name = "age"
+                                required = 'required'
+                                placeholder = "Age"
+                                className = "input-field"/>
+                            <input value={registerData.email}
+                                onChange = {(e) => handleSignUpChange(e)}
+                                name = "email"
+                                required = 'required'
+                                placeholder = "email address"
+                                className = "input-field"/>
+                            <div>
+                                <p>Gender</p>
+                                <input type="radio" id="Male" name="gender" value="Male" onChange = {(e) => handleSignUpChange(e)}/>
+                                    <label for="Male">Male</label>
+                                <input type="radio" id="Female" name="gender" value="Female" onChange = {(e) => handleSignUpChange(e)}/>
+                                    <label for="Female">Female</label>
+                                <input type="radio" id="Non-Binary" name="gender" value="Non-Binary" onChange = {(e) => handleSignUpChange(e)}/>
+                                    <label for="Non-Binary">Non-Binary</label>
+                                <input type="radio" id="Other" name="gender" value="Other" onChange = {(e) => handleSignUpChange(e)}/>
+                                    <label for="Other">Other</label>
+                            </div>
+                            <input value={registerData.password}
+                                onChange = {(e) => handleSignUpChange(e)}
+                                name = "password"
+                                required = 'required'
+                                placeholder = "Enter Password"
+                                className = "input-field"/>
+                            <input value={registerData.password_confirmation}
+                                onChange = {(e) => handleSignUpChange(e)}
+                                name = "password_confirmation"
+                                required = 'required'
+                                placeholder = "Enter Password Again"
+                                className = "input-field"/>
+                            <button>Sign Me Up!</button>
+
+                        </form>
+                    </div>
+                </div>}
+                {/* <div className = "login-container">
+                        <form className="login-form" onSubmit={(e) => submitLogin(e, loginFields)}>
+                            <label for = "login-email">Email: </label>
+                                <input
+                                    type='text'
+                                    className='input-field'
+                                    id = 'login-email'
+                                    name = 'email'
+                                    required='required'
+                                    value={loginFields.email}
+                                    placeholder='User Email'
+                                    onChange={(e) => handleLogInChange(e)}>
+                                </input>
+                                <label for = "login-password">Password: </label>
+                                <input
+                                    type='text'
+                                    id ='login-password'
+                                    name = 'password'
+                                    required='required'
+                                    className='input-field'
+                                    value={loginFields.password}
+                                    placeholder='Password'
+                                    onChange={(e) => handleLogInChange(e)}>
+                                </input>
+                                <button>Log In</button>
+                        </form>
+                    </div>   */}
+          {/* <div className = "signup-container">
               <form className = "signup-form" onSubmit={(e) => submitSignup(e, registerData)}>
                 <label >Sign Up: </label>
                 <input value={registerData.name}
@@ -157,8 +246,8 @@ export default function Landing({currentUser, setCurrentUser}) {
                 <button>Sign Me Up!</button>
 
               </form>
-          </div>
-          <button onClick = {test} >test</button>
+          </div> */}
+          <button onClick = {toggleLogin} >toggleLogin</button>
         </div>
     )
 }
