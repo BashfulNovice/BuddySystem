@@ -63,7 +63,7 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
         e.preventDefault()
         const {name, age, gender, city, activity, email, bio} = formData
 
-        fetch('http://localhost:3000/users', {
+        fetch(`http://localhost:3000/users/${currentUser.id}`, {
             method: 'PATCH',
             credentials: 'include',
             headers: {'Content-Type': 'application/json',

@@ -63,6 +63,7 @@ export default function Landing({currentUser, setCurrentUser}) {
         })
         .then(res => res.json())
         .then(user => setCurrentUser(user))
+        toggleLogin()
     }
 
     const submitSignup = (e, registerData) => {
@@ -85,6 +86,7 @@ export default function Landing({currentUser, setCurrentUser}) {
         })
         .then(res => res.json())
         .then(user => console.log(user))
+        toggleLogin()
     }
 
     return (
@@ -94,9 +96,11 @@ export default function Landing({currentUser, setCurrentUser}) {
                 <button onClick = {toggleLogin}>Login/Sign Up</button>
                 </div> 
                 : 
-                <div className = 'login-signup-card'>is this working?
+                <div className = 'login-signup-card'>
+                    <h3>-Login-</h3>
                     <div className = "login-container">
                         <form className="login-form" onSubmit={(e) => submitLogin(e, loginFields)}>
+                            <div className = 'form-element'>
                             <label for = "login-email">Email: </label>
                                 <input
                                     type='text'
@@ -108,7 +112,9 @@ export default function Landing({currentUser, setCurrentUser}) {
                                     placeholder='User Email'
                                     onChange={(e) => handleLogInChange(e)}>
                                 </input>
-                                <label for = "login-password">Password: </label>
+                            </div>
+                            <div className = 'form-element'>
+                            <label for = "login-password">Password: </label>
                                 <input
                                     type='text'
                                     id ='login-password'
@@ -119,56 +125,75 @@ export default function Landing({currentUser, setCurrentUser}) {
                                     placeholder='Password'
                                     onChange={(e) => handleLogInChange(e)}>
                                 </input>
-                                <button>Log In</button>
+                            </div>
+                                <button className = 'login-bttn'>Log In</button>
                         </form>
                     </div>
-                    <h3><span>Or Signup</span></h3>
+                    <h3>-Or Signup-</h3>
                     <div className = "signup-container">
                         <form className = "signup-form" onSubmit={(e) => submitSignup(e, registerData)}>
-                            <label >Sign Up: </label>
+                        <div className = 'form-element'>
+                        <label for = "new-name">Name:</label>
                             <input value={registerData.name}
                                 onChange = {(e) => handleSignUpChange(e)}
                                 name = "name"
+                                id = "new-name"
                                 required = 'required'
                                 placeholder = "Full Name"
                                 className = "input-field"/>
+                        </div>
+                        <div className = 'form-element'>
+                            <label for = "new-age">Age: </label>
                             <input value={registerData.age}
                                 onChange = {(e) => handleSignUpChange(e)}
                                 name = "age"
+                                id = 'new-age'
                                 required = 'required'
                                 placeholder = "Age"
                                 className = "input-field"/>
+                        </div>
+                        <div className = 'form-element'>
+                            <label for = "new-email">Email: </label>
                             <input value={registerData.email}
                                 onChange = {(e) => handleSignUpChange(e)}
                                 name = "email"
+                                id = 'new-email'
                                 required = 'required'
                                 placeholder = "email address"
                                 className = "input-field"/>
-                            <div>
-                                <p>Gender</p>
-                                <input type="radio" id="Male" name="gender" value="Male" onChange = {(e) => handleSignUpChange(e)}/>
-                                    <label for="Male">Male</label>
-                                <input type="radio" id="Female" name="gender" value="Female" onChange = {(e) => handleSignUpChange(e)}/>
-                                    <label for="Female">Female</label>
-                                <input type="radio" id="Non-Binary" name="gender" value="Non-Binary" onChange = {(e) => handleSignUpChange(e)}/>
-                                    <label for="Non-Binary">Non-Binary</label>
-                                <input type="radio" id="Other" name="gender" value="Other" onChange = {(e) => handleSignUpChange(e)}/>
-                                    <label for="Other">Other</label>
-                            </div>
+                        </div>
+                        <div className = 'form-gender'>
+                            <p className = "gender-label">Gender</p>
+                            <input type="radio" id="Male" name="gender" value="Male" onChange = {(e) => handleSignUpChange(e)}/>
+                                <label for="Male">Male</label>
+                            <input type="radio" id="Female" name="gender" value="Female" onChange = {(e) => handleSignUpChange(e)}/>
+                                <label for="Female">Female</label>
+                            <input type="radio" id="Non-Binary" name="gender" value="Non-Binary" onChange = {(e) => handleSignUpChange(e)}/>
+                                <label for="Non-Binary">Non-Binary</label>
+                            <input type="radio" id="Other" name="gender" value="Other" onChange = {(e) => handleSignUpChange(e)}/>
+                                <label for="Other">Other</label>
+                        </div>
+                        <div className = 'form-element'>
+                            <label for = "new-password">Password: </label>
                             <input value={registerData.password}
                                 onChange = {(e) => handleSignUpChange(e)}
                                 name = "password"
+                                id = 'new-password'
                                 required = 'required'
                                 placeholder = "Enter Password"
                                 className = "input-field"/>
+                        </div>
+                        <div className = 'form-element'>
+                            <label for = "new-confirm-password">Confirm password: </label>
                             <input value={registerData.password_confirmation}
                                 onChange = {(e) => handleSignUpChange(e)}
                                 name = "password_confirmation"
+                                id = 'new-confirm-password'
                                 required = 'required'
                                 placeholder = "Enter Password Again"
                                 className = "input-field"/>
-                            <button>Sign Me Up!</button>
-
+                        </div>
+                            <button className = 'signup-bttn'>Sign Me Up!</button>
                         </form>
                     </div>
                 </div>}

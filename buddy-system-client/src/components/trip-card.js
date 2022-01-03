@@ -72,39 +72,44 @@ const deleteTrip = () => {
 
 const renderDelete = () => {
     if (trip.host.id === currentUser.id) {
-        return (<button onClick = {deleteTrip}><h1>X</h1></button>)
+        return (<button className = 'trip-delete' onClick = {deleteTrip}>X</button>)
     }
 }
 
 const renderJoin = () => {
     if (participant) {
-        return <button onClick = {leaveTrip}>Leave Trip</button>
+        return <button className = 'card-action-bttn' onClick = {leaveTrip}>Leave Trip</button>
     }
     else if(trip.current_participants === trip.max_participants){
-        return <p>Trip Full</p>
+        return <p className = 'card-action-bttn'>Trip Full</p>
     }
     else {
-        return <button onClick = {joinTrip}>Join Trip</button>
+        return <button className = 'card-action-bttn' onClick = {joinTrip}>Join Trip</button>
     }
 }
 let participant = trip.users.length > 0 &&trip.users.find(user => user.id === currentUser.id)
 return (
     <div className = "trip-card">
-        <h2>{trip.title}</h2>
+        <h2 className = 'card-title'>{trip.title}</h2>
         {renderDelete()}
-        <h3>Hosted by: {trip.host.name}</h3>
-        <p>Date: {trip.start}</p>
-        <p>Requirements: {trip.requirements}</p>
-        <p>Details: {trip.description}</p>
-        <p>Maximum Participants: {trip.max_participants}</p>
-        <p>Minimum Participants: {trip.minimum_participants}</p>
-        <ul className = 'participant-list'>Curent Participants: {trip.users.length}
-        {trip.users.map(user => <li><Link to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></li>)}
+        <div className = 'host-date'>
+            <h3 className = 'card-host'>Hosted by: {trip.host.name}</h3>
+            <p className = 'trip-date'>Date: {trip.start}</p>
+        </div>
+        <p className = 'card-item' ><strong>Requirements:</strong>{trip.requirements}</p>
+        <p className = 'card-item' ><strong>Details:</strong> {trip.description}</p>
+        <p className = 'card-item' >Maximum Participants: {trip.max_participants}</p>
+        <p className = 'card-item' >Minimum Participants: {trip.minimum_participants}</p>
+        <p className = 'card-item' >Curent Participants: {trip.users.length}</p>
+        <ul className = 'participant-list'> 
+        {trip.users.map(user => <div className = 'user-tag'><img src={user.profile_pic} width="40" height="40" /><Link className = 'user-link' to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></div>)}
         </ul>
-        {renderJoin()}
-        <p><Link to = {`/trip/${trip.id}`}>Trip Details</Link></p>
+        <div className = 'card-actions'>
+            {renderJoin()}
+            <Link to = {`/trip/${trip.id}`}>Trip Details</Link>
+        </div>
         {/* {trip.users.find(user => user.id = currentUser.id)? <button onClick = {leaveTrip}>Leave Trip</button> : <button onClick = {joinTrip}>Join Trip</button>} */}
-        <button onClick = {testCard}>Card Test!</button>
+        {/* <button onClick = {testCard}>Card Test!</button> */}
     </div>
 
 

@@ -25,8 +25,8 @@ export default function Header({currentUser, setCurrentUser}) {
                     </>
                         :
                     <>
-                        <p>Home</p>
-                        <p>Profile</p>
+                        <p className = 'dead-link' >Home</p>
+                        <p className = 'dead-link' >Profile</p>
                         <Link className = "link" to="/" ><p>Log In</p></Link>
                     </>
                 }

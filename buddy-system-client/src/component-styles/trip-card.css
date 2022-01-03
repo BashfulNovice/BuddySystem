@@ -1,10 +1,75 @@
 
 
 .trip-card {
-    border: 3px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
     width: 100%;
+    background-color: rgb(154, 182, 214);
+    position:relative;
 }
 
 .participant-list {
     color: black;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.user-tag {
+    margin: auto;
+}
+
+.user-link {
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.trip-delete {
+position: absolute;
+top: 20px;
+right: 20px;
+}
+
+.card-title{
+margin-bottom: 0px;
+}
+
+.card-host{
+padding-right: 20px;
+border-right: 3px solid black;
+}
+
+.card-item{
+margin: 3px;
+}
+
+.host-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+}
+
+.trip-date {
+    padding-left: 20px;
+    margin: auto;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.card-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
+
+.card-action-bttn {
+    height: 25px;
+    margin-right: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
 }

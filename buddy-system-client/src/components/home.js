@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import '../component-styles/home.css'
 import MapContainer from './map-container'
 import TripCard from './trip-card'
+import {anything} from '../anything'
 
 export default function Home({currentUser, rerender, setRerender, tripList, setTripList}) {
 
@@ -187,11 +188,15 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                     <MapContainer tripList = {tripList}/>
                 </div>
                 <div className = "trip-list">
-                    <h3>All Trips</h3>
-                    <button onClick = {toggleCreate}>Add Trip</button>
-                    <div className = "add-trip">Add</div>
+                    <div className = 'list-header'>
+                        <h2>All Trips</h2>
+                        <button className = 'add-trip-bttn' onClick = {toggleCreate}>Add Trip</button>
+                    </div>
+                    {/* <div className = "add-trip">Add</div> */}
+                    <div className = 'card-container'>
                     {tripList.map(trip => <TripCard tripList = {tripList} setTripList = {setTripList} currentUser = {currentUser} key = {trip.id} trip = {trip} />)}
-                    <button onClick = {homeTest}>Home Test</button>
+                    </div>
+                    {/* <button onClick = {homeTest}>Home Test</button> */}
                 </div>
             </div>
             {renderForm()}

@@ -27,7 +27,7 @@
 .title-card{
     background-color: rgba(148, 157, 167, 0.6);
     height: 20vh;
-    width: 30%;
+    width: 40%;
     margin: auto;
     margin-top: 50px;
     border-radius: 20px;
@@ -36,10 +36,27 @@
 }
 
 .login-signup-card{
-    background-color: rgba(148, 157, 167, 0.6);
+    background-color: rgba(148, 157, 167, 0.7);
     width: 30%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 25px;
     border-radius: 20px;
-    box-shadow: 0 0 5px 5px rgba(148, 157, 167, 0.6);
+    box-shadow: 0 0 5px 5px rgba(148, 157, 167, 0.7);
 }
+.form-element {
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.input-field{
+    border-radius: 5px;
+    background-color: rgba(216, 214, 214, 0.8);
+}
+
+.gender-label{
+    border: 3px;
+    margin-bottom: 5px;
+    margin-top:10px;
+} 

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   post '/users', to: "users#create"
 
-  patch 'users', to: "users#update"
+  patch 'users/:id', to: "users#update"
   
   get '/test', to: "users#test"
 

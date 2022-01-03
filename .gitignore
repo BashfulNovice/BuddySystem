@@ -28,4 +28,6 @@
 
 # ignore api key and project id
 /buddy-system-client/src/ApiKey.js
-.env
+buddy-system-client/.env
+
+buddy-system-client/src/anything.js
