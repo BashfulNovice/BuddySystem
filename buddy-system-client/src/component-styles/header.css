@@ -5,13 +5,15 @@
     justify-content: space-between;
     align-items: center;
     height: 50px;
-    background-color: navy;
+    background-color: #2E4756;
     width: 100%;
+    box-shadow: 0 4px 5px rgba(46,71,86, 0.8), 0 8px 5px rgba(46,71,86, 0.6), 0 12px 5px rgba(16, 44, 61, 0.4)
 }
 
 ul {
     display: flex;
     color: #b3b3f3;
+    color: #C6ECAE;
 }
 
 .header-item {
@@ -21,11 +23,13 @@ ul {
 
 .buddy-system {
     color: #b3b3f3;
+    color: #C6ECAE;
     margin-left: 20px;
 }
 
 .link {
     color: #b3b3f3;
+    color: #C6ECAE;
     text-decoration: none;
     margin: 5px 15px;
     transition: 0.5s;

@@ -17,7 +17,7 @@ export default function UserDetail({currentUser}) {
     , []);
 
     if (!userInfo) return <h1>Loading</h1>
-    
+    if (!currentUser) return <h1>You are not logged in!</h1>
 
     return(
         <div className = "profile-page" >

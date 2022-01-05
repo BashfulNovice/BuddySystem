@@ -3,6 +3,10 @@
 .profile-page{
     display: flex;
     flex-direction: row;
+    height: 100vh;
+    background-image: url('https://www.onxmaps.com/wp-content/uploads/sites/15/2020/08/Topography_LP_Hero-1024x569.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 
 }
 
@@ -10,17 +14,57 @@
     width: 33%;
     display: flex;
     flex-direction: column;
+    background-color: rgba(148, 157, 167, 0.9);
+    border-radius: 20px;
+    margin: 20px;
+    padding-top:30px;
+    height: 575px;
+    overflow:auto;
 }
 
 .profile-trips-container {
     width: 66%;
     display: flex;
     flex-direction: column;
-
+    background-color: rgba(148, 157, 167, 0.9);
+    border-radius: 20px;
+    margin: 20px;
+    height: 575px;
+    margin: 25px;
+    padding: 15px;
 }
 
 .profile-pic {
     height: 250px;
     width: 250px;
     margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-item {
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.trips-list {
+    overflow: auto;
+    border-radius: 10px;
+}
+
+.edit-info-bttn {
+    width: 75px;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+/* .gender-element{ 
+
+} */
+
+.edit-info{
+    border-radius: 5px;
+    background-color: rgba(216, 214, 214, 0.8);
+    width: 75%;
+    overflow: auto;
 }

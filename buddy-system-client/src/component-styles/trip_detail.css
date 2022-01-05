@@ -2,16 +2,23 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    background-image: url('https://www.onxmaps.com/wp-content/uploads/sites/15/2020/08/Topography_LP_Hero-1024x569.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
 .trip-info-container {
     width: 45%;
-    height: 650px;
+    height: 600px;
     /* border: 2px solid black; */
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     background-color:  rgb(54, 105, 54);
+    background-color: rgba(148, 157, 167, 0.85);
+    margin-top: 20px;
+    
 }
 .trip-info {
     display: flex;
@@ -19,20 +26,25 @@
     margin: 5px;
     border-radius: 10px;
     background-color: rgb(206, 238, 206);
+    background-color: rgb(166, 199, 147);
     width:90%;
     margin: auto;
     margin-bottom: 20px;
     overflow: auto;
+    /* padding-bottom: 15px; */
 }
 
 .trip-message-container {
     width: 45%;
-    height: 650px;
+    height: 600px;
     /* border: 2px solid black; */
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     background-color:  rgb(54, 105, 54);
+    background-color: rgba(148, 157, 167, 0.85);
+    margin-top: 20px;
+    
 }
 
 .trip-message-list {
@@ -40,8 +52,10 @@
     flex-direction: column;
     margin: 5px;
     border-radius: 10px;
-    background-color: rgb(206, 238, 206);
+    background-color: rgb(198, 236, 174);
+    background-color: rgb(46, 71, 86);
     width:90%;
+    height: 556px;
     overflow: auto;
     margin: auto;
     
@@ -87,4 +101,14 @@ button:hover {
 }
 .attendee{
     margin-right: 10px;
+}
+.participant-list-detail{
+    display: flex;
+    flex-direction: column;
+}
+
+.trip-detail-participants{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
 }

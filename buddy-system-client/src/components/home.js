@@ -42,6 +42,21 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
         setCreating(!creating)
     }
 
+    const cancelCreate = () => {
+        toggleCreate()
+        setTripData({
+            title: '',
+            latitude: '',
+            longitude: '',
+            description: '',
+            requirements: '',
+            max_participants: '',
+            minimum_participants: '',
+            start: '',
+            end: ''
+        })
+    }
+
     const handleTripChange = (e) => {
         setTripData({...tripData, [e.target.name]: e.target.value})
     }
@@ -51,7 +66,9 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
             e.preventDefault()
             const {title, latitude, longitude, description, requirements, max_participants, minimum_participants, start, end} = tripData
             const host_user = currentUser.id
-    
+
+            toggleCreate()
+
             fetch('http://localhost:3000/trips', {
                 method: 'POST',
                 credentials: 'include',
@@ -72,6 +89,18 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
             })
             .then(res => res.json())
             .then(trip => setTripList([...tripList, trip]))
+            .then(setTripData({
+                title: '',
+                latitude: '',
+                longitude: '',
+                description: '',
+                requirements: '',
+                max_participants: '',
+                minimum_participants: '',
+                start: '',
+                end: ''
+            }))
+            
         }
         
     
@@ -79,8 +108,9 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
     const renderForm = () => {
         if (creating) {
             return (<div className = "trip-add-form-background">
-            <button onClick = {toggleCreate}>Cancel</button>
             <form className = "trip-add-form" onSubmit = {(e) => createNewTrip(e, tripData)}>
+                <div className = 'form-row'>
+                <div className = 'form-element'>
                 <label for = "make-title">Trip Title</label>
                     <input
                         type='text'
@@ -92,6 +122,40 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                         onChange={(e) => handleTripChange(e)}
                         >
                     </input>
+                </div>
+                <div className = 'form-element'>
+                <label for="make-start">Start date:</label>
+                    <input type="date" id="make-start" name="start"
+                        value={tripData.start}
+                        min="2022-01-01" max="2023-12-30"
+                        onChange={(e) => handleTripChange(e)}>
+                    </input>
+                </div>
+                <div className = 'form-element'>
+                <label for="make-end">End date:</label>
+                    <input type="date" id="make-start" name="end"
+                        value={tripData.end}
+                        min="2022-01-02" max="2023-12-31"
+                        onChange={(e) => handleTripChange(e)}>
+                    </input>
+                </div>
+                </div>
+
+                <div className = 'form-element'>
+                <label for = "make-requirements">Participant Requirements:</label>
+                    <textarea
+                        type='text'
+                        className='input-requirments'
+                        id = 'make-requirements'
+                        name = 'requirements'
+                        value={tripData.requirements}
+                        placeholder='Requirements'
+                        onChange={(e) => handleTripChange(e)}
+                        >
+                    </textarea>
+                </div>
+                <div className = 'form-row'>
+                <div className = 'form-element'>
                 <label for = "make-lat">Trip Start Latitude</label>
                     <input
                         type='text'
@@ -103,6 +167,8 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                         onChange={(e) => handleTripChange(e)}
                         >
                     </input>
+                </div>
+                <div className = 'form-element'>
                 <label for = "make-lng">Trip Start Longitude:</label>
                     <input
                         type='text'
@@ -114,28 +180,23 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                         onChange={(e) => handleTripChange(e)}
                         >
                     </input>
+                </div>
+                </div>
+                <div className = 'form-element'>
                 <label for = "make-description">Trip Description:</label>
-                    <input
+                    <textarea
                         type='text'
-                        className='input-field'
+                        className='input-description'
                         id = 'make-description'
                         name = 'description'
                         value={tripData.description}
                         placeholder='description'
                         onChange={(e) => handleTripChange(e)}
                         >
-                    </input>
-                <label for = "make-requirements">Participant Requirements:</label>
-                    <input
-                        type='text'
-                        className='input-field'
-                        id = 'make-requirements'
-                        name = 'requirements'
-                        value={tripData.requirements}
-                        placeholder='Requirements'
-                        onChange={(e) => handleTripChange(e)}
-                        >
-                    </input>
+                    </textarea>
+                </div>
+                <div className = 'form-row'>
+                <div className = 'form-element'>
                 <label for="max_participants">Max Number of Participants:</label>
                     <input 
                         type="number" 
@@ -148,7 +209,9 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                         onChange={(e) => handleTripChange(e)}
                         >  
                     </input>
-                <label for="minimum_participants">Max Number of Participants:</label>
+                </div>
+                <div className = 'form-element'>
+                <label for="minimum_participants">Minimum Number of Participants:</label>
                     <input 
                         type="number" 
                         id="minimum_participants" 
@@ -160,19 +223,10 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                         onChange={(e) => handleTripChange(e)}
                         >  
                     </input>
-                <label for="make-start">Start date:</label>
-                    <input type="date" id="make-start" name="start"
-                        value={tripData.start}
-                        min="2022-01-01" max="2023-12-30"
-                        onChange={(e) => handleTripChange(e)}>
-                    </input>
-                <label for="make-end">Start date:</label>
-                    <input type="date" id="make-start" name="end"
-                        value={tripData.end}
-                        min="2022-01-02" max="2023-12-31"
-                        onChange={(e) => handleTripChange(e)}>
-                    </input>
+                </div>
+                </div>
                     <button>Create Trip!</button>
+                    <button onClick = {cancelCreate}>Discard</button>
             </form>
         </div>)
         }
@@ -180,6 +234,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
     }
 
 
+    if (!currentUser) return <h1>You are not logged in!</h1>
 
     return (
         <div>

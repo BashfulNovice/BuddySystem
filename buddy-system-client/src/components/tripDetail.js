@@ -61,6 +61,7 @@ export default function TripDetail({currentUser}) {
 
 
     if (!tripInfo) return <h1>Loading</h1>
+    if (!currentUser) return <h1>You are not logged in!</h1>
 
     return (
       <div>
@@ -73,10 +74,13 @@ export default function TripDetail({currentUser}) {
                 <h4>Start Date: {tripInfo.start}</h4>
                 <p><b>Requirements</b>: {tripInfo.requirements}</p>
                 <p>{tripInfo.description}</p>
-
-                <ul className = 'attendees'>Attendees:
-                  {tripInfo.users.map(user => <p className = 'attendee'><img src={user.profile_pic} width="40" height="40" /><Link to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></p>)}
-                </ul>
+                
+                <div className = 'participant-list-detail'>
+                  <p>Current Participants:</p>
+                <div className = 'trip-detail-participants'>
+                  {tripInfo.users.map(user => <div className = 'user-tag'><img className = 'img-tag' src={user.profile_pic} width="40" height="40" /><Link to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></div>)}
+                </div>
+                </div>
                 <div className = "detail-map">
                 <LoadScript googleMapsApiKey={'AIzaSyDxSmnrwcZHrmkVJGjhHiilppW4wKX6nRs'}>
                   <GoogleMap
@@ -113,7 +117,7 @@ export default function TripDetail({currentUser}) {
                 </div>
             </div>
           </div>
-          <button onClick = {testTrip}>test</button>
+          {/* <button onClick = {testTrip}>test</button> */}
         </div>
     )
 

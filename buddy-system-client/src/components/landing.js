@@ -43,7 +43,7 @@ export default function Landing({currentUser, setCurrentUser}) {
         //     console.log(res)
         //     return res.json()})
         // .then(console.log)
-        console.log(registerData)
+        console.log(currentUser)
 
     }
 
@@ -116,7 +116,7 @@ export default function Landing({currentUser, setCurrentUser}) {
                             <div className = 'form-element'>
                             <label for = "login-password">Password: </label>
                                 <input
-                                    type='text'
+                                    type='password'
                                     id ='login-password'
                                     name = 'password'
                                     required='required'
@@ -273,6 +273,7 @@ export default function Landing({currentUser, setCurrentUser}) {
               </form>
           </div> */}
           <button onClick = {toggleLogin} >toggleLogin</button>
+          <button onClick = {test}>TestCurrentUser</button>
         </div>
     )
 }

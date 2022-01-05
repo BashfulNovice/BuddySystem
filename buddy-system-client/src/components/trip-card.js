@@ -102,11 +102,11 @@ return (
         <p className = 'card-item' >Minimum Participants: {trip.minimum_participants}</p>
         <p className = 'card-item' >Curent Participants: {trip.users.length}</p>
         <ul className = 'participant-list'> 
-        {trip.users.map(user => <div className = 'user-tag'><img src={user.profile_pic} width="40" height="40" /><Link className = 'user-link' to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></div>)}
+        {trip.users.map(user => <div className = 'user-tag'><img className = 'img-tag' src={user.profile_pic} width="40" height="40" /><Link className = 'user-link' to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></div>)}
         </ul>
         <div className = 'card-actions'>
             {renderJoin()}
-            <Link to = {`/trip/${trip.id}`}>Trip Details</Link>
+            <Link className = 'detail-link' to = {`/trip/${trip.id}`}>Trip Details!</Link>
         </div>
         {/* {trip.users.find(user => user.id = currentUser.id)? <button onClick = {leaveTrip}>Leave Trip</button> : <button onClick = {joinTrip}>Join Trip</button>} */}
         {/* <button onClick = {testCard}>Card Test!</button> */}

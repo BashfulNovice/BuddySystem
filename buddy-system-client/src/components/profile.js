@@ -83,26 +83,30 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
         toggleEdit(!editing)
     }
 
+    if (!currentUser) return <h1>You are not logged in!</h1>
+
     if (!displayedUser.name)
         {return <><h1>Loading</h1><button onClick = {testProfile}>Profile test</button></>}
+    
     return (
         <div className = 'profile-page'>
             {!editing?
                 <div className = 'profile-info-container'>
                     <img className = 'profile-pic' src = {displayedUser.profile_pic} ></img>
                     <h3>Name: {displayedUser.name}</h3>
-                    <p>Age: {displayedUser.age}</p>
-                    <p>Gender: {displayedUser.gender}</p>
-                    <p>Area: {displayedUser.city}</p>
-                    <p>Primary Activity: {displayedUser.activity}</p>
-                    <p>Contact: {displayedUser.email}</p>
-                    <p>Bio: {displayedUser.bio}</p>
-                    <button onClick = {startEdit}>Edit Info</button>
+                    <p className = 'profile-item'>Age: {displayedUser.age}</p>
+                    <p className = 'profile-item'>Gender: {displayedUser.gender}</p>
+                    <p className = 'profile-item'>Area: {displayedUser.city}</p>
+                    <p className = 'profile-item'>Primary Activity: {displayedUser.activity}</p>
+                    {/* <p className = 'profile-item'>Contact: {displayedUser.email}</p> */}
+                    <p className = 'profile-item'>Bio: {displayedUser.bio}</p>
+                    <button className = 'edit-info-bttn' onClick = {startEdit}>Edit Info</button>
                 </div>
                 :
                 <div className = "profile-info-container">
                     <img className = 'profile-pic' src = {displayedUser.profile_pic} ></img>
                     <form className = 'profile-edit-form' onSubmit = {(e) => saveEdit(e, formData)}>
+                        <div className = 'form-element'>
                         <label for = "edit-name">Name:</label>
                         <input
                             type='text'
@@ -114,6 +118,8 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
                             onChange={(e) => handleInfoChange(e)}
                             >
                         </input>
+                        </div>
+                        <div className = 'form-element'>
                         <label for = "edit-age">Age:</label>
                         <input
                             type='text'
@@ -125,8 +131,9 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
                             onChange={(e) => handleInfoChange(e)}
                             >
                         </input>
+                        </div>
                         {/* Gender radio buttons go here */}
-                        <div>
+                        <div className = 'gender-element'>
                             <input type="radio" id="updateMale" name="gender" value="Male" onChange = {(e) => handleInfoChange(e)}/>
                                 <label for="updateMale">Male</label>
                             <input type="radio" id="updateFemale" name="gender" value="Female" onChange = {(e) => handleInfoChange(e)}/>
@@ -136,6 +143,7 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
                             <input type="radio" id="updateOther" name="gender" value="Other" onChange = {(e) => handleInfoChange(e)}/>
                                 <label for="updateOther">Other</label>
                         </div>
+                        <div className = 'form-element'>
                         <label for = "edit-area">Area/City:</label>
                         <input
                             type='text'
@@ -147,18 +155,21 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
                             onChange={(e) => handleInfoChange(e)}
                             >
                         </input>
-                        <label for = "edit-activity">Primary Activity:</label>
-                        <input
+                        </div>
+                        <div className = 'form-element'>
+                        <label for = "edit-activity">Primary Activities:</label>
+                        <textarea
                             type='text'
-                            className='input-field'
+                            className='edit-info'
                             id = 'edit-activity'
                             name = 'activity'
                             value={formData.activity}
                             placeholder='User Email'
                             onChange={(e) => handleInfoChange(e)}
                             >
-                        </input>
-                        <label for = "edit-contact">Contact Email:</label>
+                        </textarea>
+                        </div>
+                        {/* <label for = "edit-contact">Contact Email:</label>
                         <input
                             type='text'
                             className='input-field'
@@ -168,18 +179,20 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
                             placeholder='Contact Email'
                             onChange={(e) => handleInfoChange(e)}
                             >
-                        </input>
+                        </input> */}
+                        <div className = 'form-element'>
                         <label for = "edit-bio">Bio:</label>
-                        <input
+                        <textarea
                             type='text'
-                            className='input-field'
+                            className='edit-info'
                             id = 'edit-bio'
                             name = 'bio'
                             value={formData.bio}
                             placeholder='Bio'
                             onChange={(e) => handleInfoChange(e)}
                             >
-                        </input>
+                        </textarea>
+                        </div>
                         <button>Save</button>
                     </form>
                 </div>
@@ -187,9 +200,11 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
             }
             <div className = 'profile-trips-container'>
                 <h2>Trips You're Attending</h2>
+                <div className = 'trips-list'>
                 {/* <TripCard trip = {displayedUser.trips[0]}></TripCard> */}
                 {profileList.map(trip => <TripCard tripList = {tripList} setTripList = {setTripList} rerender = {rerender} setRerender = {setRerender} currentUser = {currentUser} key = {trip.id} trip = {trip} />)}
-                <button onClick = {testProfile}>Profile test</button>
+                </div>
+                {/* <button onClick = {testProfile}>Profile test</button> */}
             </div>
             
         </div>
