@@ -18,7 +18,8 @@ export default function Landing({currentUser, setCurrentUser}) {
         age: '',
         gender: '',
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
+        profile_pic: 'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'
     })
 
     //Functions
@@ -68,7 +69,7 @@ export default function Landing({currentUser, setCurrentUser}) {
 
     const submitSignup = (e, registerData) => {
         e.preventDefault()
-        const { age, email, gender, name, password, password_confirmation} = registerData
+        const { age, email, gender, name, password, password_confirmation, profile_pic} = registerData
         fetch('http://localhost:3000/users', {
             method: 'POST',
             credentials: 'include',
@@ -80,7 +81,8 @@ export default function Landing({currentUser, setCurrentUser}) {
                 gender,
                 name, 
                 password,
-                password_confirmation
+                password_confirmation,
+                profile_pic
             })
 
         })
@@ -194,8 +196,10 @@ export default function Landing({currentUser, setCurrentUser}) {
                                 className = "input-field"/>
                         </div>
                             <button className = 'signup-bttn'>Sign Me Up!</button>
+                            
                         </form>
                     </div>
+                    <button className = 'cancel-login' onClick = {toggleLogin} >X</button>
                 </div>}
                 {/* <div className = "login-container">
                         <form className="login-form" onSubmit={(e) => submitLogin(e, loginFields)}>
@@ -272,8 +276,8 @@ export default function Landing({currentUser, setCurrentUser}) {
 
               </form>
           </div> */}
-          <button onClick = {toggleLogin} >toggleLogin</button>
-          <button onClick = {test}>TestCurrentUser</button>
+          {/* <button onClick = {toggleLogin} >toggleLogin</button>
+          <button onClick = {test}>TestCurrentUser</button> */}
         </div>
     )
 }

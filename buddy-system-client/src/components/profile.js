@@ -93,6 +93,7 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
             {!editing?
                 <div className = 'profile-info-container'>
                     <img className = 'profile-pic' src = {displayedUser.profile_pic} ></img>
+                    <div className = 'profile-info-list'>
                     <h3>Name: {displayedUser.name}</h3>
                     <p className = 'profile-item'>Age: {displayedUser.age}</p>
                     <p className = 'profile-item'>Gender: {displayedUser.gender}</p>
@@ -101,6 +102,7 @@ export default function Profile({currentUser, rerender, setRerender, tripList, s
                     {/* <p className = 'profile-item'>Contact: {displayedUser.email}</p> */}
                     <p className = 'profile-item'>Bio: {displayedUser.bio}</p>
                     <button className = 'edit-info-bttn' onClick = {startEdit}>Edit Info</button>
+                    </div>
                 </div>
                 :
                 <div className = "profile-info-container">

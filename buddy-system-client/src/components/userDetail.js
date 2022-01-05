@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
+import '../component-styles/userDetail.css'
 
 
 export default function UserDetail({currentUser}) { 
@@ -23,12 +24,14 @@ export default function UserDetail({currentUser}) {
         <div className = "profile-page" >
             <div className = 'profile-info-container'>
                     <img className = 'profile-pic' src = {userInfo.profile_pic} ></img>
+                    <div className = 'profile-info-list'> 
                     <h3>Name: {userInfo.name}</h3>
                     <p>Age: {userInfo.age}</p>
                     <p>Gender: {userInfo.gender}</p>
                     <p>Area: {userInfo.city}</p>
                     <p>Primary Activity: {userInfo.activity}</p>
                     <p>Bio: {userInfo.bio}</p>
+                    </div>
                 </div>
         </div>
     )

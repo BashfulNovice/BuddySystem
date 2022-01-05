@@ -78,7 +78,7 @@ export default function TripDetail({currentUser}) {
                 <div className = 'participant-list-detail'>
                   <p>Current Participants:</p>
                 <div className = 'trip-detail-participants'>
-                  {tripInfo.users.map(user => <div className = 'user-tag'><img className = 'img-tag' src={user.profile_pic} width="40" height="40" /><Link to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></div>)}
+                  {tripInfo.users.map(user => <div className = 'user-tag'><img className = 'img-tag' src={user.profile_pic} width="40" height="40" /><Link className = 'user-link' to = {`/user/${user.id}`} key = {user.id}>{user.name}</Link></div>)}
                 </div>
                 </div>
                 <div className = "detail-map">

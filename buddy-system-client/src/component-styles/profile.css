@@ -19,7 +19,7 @@
     margin: 20px;
     padding-top:30px;
     height: 575px;
-    overflow:auto;
+    /* overflow:auto; */
 }
 
 .profile-trips-container {
@@ -67,4 +67,12 @@
     background-color: rgba(216, 214, 214, 0.8);
     width: 75%;
     overflow: auto;
+}
+
+.profile-info-list {
+    padding-left:15px;
+    padding-right:15px;
+    margin-bottom:15px;
+    overflow:auto;
+
 }
