@@ -1,23 +1,29 @@
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-const MapContainer = ({tripList}) => {
+const MapContainer = ({tripList, creating, setCreating, tripData, setTripData}) => {
     const mapStyles = {
         height: '600px',
         width: '100%',
     };
 
     const defaultCenter = {
-        lat: 40.4406,
-        lng: -79.9959,
+        lat: 42.2787,
+        lng: -83.7485,
     };
+
+    const logMap = (e) => {
+        setTripData({...tripData, latitude: e.latLng.lat(), longitude: e.latLng.lng()})
+        setCreating(true)
+    }
 
     return (
         <LoadScript googleMapsApiKey={'AIzaSyDxSmnrwcZHrmkVJGjhHiilppW4wKX6nRs'}>
             <GoogleMap
                 mapContainerStyle={mapStyles}
-                zoom={14}
+                zoom={8}
                 center={defaultCenter}
+                onClick = {(e) => logMap(e)}
             >
                 {/* {tripList.map((trip) => {
                 let position = {lat: trip.latitude, lng: trip.longitude}

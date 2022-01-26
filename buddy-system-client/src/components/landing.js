@@ -87,7 +87,7 @@ export default function Landing({currentUser, setCurrentUser}) {
 
         })
         .then(res => res.json())
-        .then(user => console.log(user))
+        .then(user => setCurrentUser(user))
         toggleLogin()
     }
 

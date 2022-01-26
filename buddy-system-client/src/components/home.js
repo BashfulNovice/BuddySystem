@@ -3,6 +3,7 @@ import '../component-styles/home.css'
 import MapContainer from './map-container'
 import TripCard from './trip-card'
 import {anything} from '../anything'
+// import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 export default function Home({currentUser, rerender, setRerender, tripList, setTripList}) {
 
@@ -20,6 +21,10 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
         start: '',
         end: ''
     })
+    // const mapStyles = {
+    //     height: '250px',
+    //     width: '250px',
+    //   };
 
 
     // useEffect(() => {
@@ -35,7 +40,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
 
     //Functions/methods
     const homeTest = () => {
-        console.log(tripList)
+        console.log(tripData)
     }
     
     const toggleCreate = () => {
@@ -59,6 +64,10 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
 
     const handleTripChange = (e) => {
         setTripData({...tripData, [e.target.name]: e.target.value})
+    }
+
+    const logMap = (e) => {
+        console.log("the map was clicked")
     }
 
     const createNewTrip = (e, tripData) => {
@@ -115,6 +124,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                     <input
                         type='text'
                         className='input-field'
+                        required='required'
                         id = 'make-title'
                         name = 'title'
                         value={tripData.title}
@@ -127,6 +137,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                 <label for="make-start">Start date:</label>
                     <input type="date" id="make-start" name="start"
                         value={tripData.start}
+                        required='required'
                         min="2022-01-01" max="2023-12-30"
                         onChange={(e) => handleTripChange(e)}>
                     </input>
@@ -159,6 +170,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                 <label for = "make-lat">Trip Start Latitude</label>
                     <input
                         type='text'
+                        required='required'
                         className='input-field'
                         id = 'make-lat'
                         name = 'latitude'
@@ -172,6 +184,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                 <label for = "make-lng">Trip Start Longitude:</label>
                     <input
                         type='text'
+                        required='required'
                         className='input-field'
                         id = 'make-lng'
                         name = 'longitude'
@@ -182,6 +195,19 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                     </input>
                 </div>
                 </div>
+                <div className = 'form-row'>
+                    <button onClick = {toggleCreate}>Choose Start Location on Map</button>
+                </div>
+                
+                {/* <LoadScript googleMapsApiKey={'AIzaSyDxSmnrwcZHrmkVJGjhHiilppW4wKX6nRs'}>
+                  <GoogleMap
+                    mapContainerStyle={mapStyles}
+                    zoom={14}
+                    center={{lat: 40.4406,lng: -79.9959,}}
+                    onClick={(e) => logMap(e)}>
+                        
+                  </GoogleMap>
+                </LoadScript> */}
                 <div className = 'form-element'>
                 <label for = "make-description">Trip Description:</label>
                     <textarea
@@ -200,6 +226,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                 <label for="max_participants">Max Number of Participants:</label>
                     <input 
                         type="number" 
+                        required='required'
                         id="max_participants" 
                         name="max_participants" 
                         min="2" max="25"
@@ -214,6 +241,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                 <label for="minimum_participants">Minimum Number of Participants:</label>
                     <input 
                         type="number" 
+                        required='required'
                         id="minimum_participants" 
                         name="minimum_participants" 
                         min="2" max="25"
@@ -240,7 +268,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
         <div>
             <div className = "home-content">
                 <div className = "trip-map">
-                    <MapContainer tripList = {tripList}/>
+                    <MapContainer creating = {creating} setCreating = {setCreating} tripData = {tripData} setTripData = {setTripData} tripList = {tripList}/>
                 </div>
                 <div className = "trip-list">
                     <div className = 'list-header'>
@@ -251,7 +279,7 @@ export default function Home({currentUser, rerender, setRerender, tripList, setT
                     <div className = 'card-container'>
                     {tripList.map(trip => <TripCard tripList = {tripList} setTripList = {setTripList} currentUser = {currentUser} key = {trip.id} trip = {trip} />)}
                     </div>
-                    {/* <button onClick = {homeTest}>Home Test</button> */}
+                    <button onClick = {homeTest}>Home Test</button>
                 </div>
             </div>
             {renderForm()}

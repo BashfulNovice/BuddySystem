@@ -95,7 +95,7 @@ export default function TripDetail({currentUser}) {
               </div>
             </div>
             <div className = "trip-message-container">
-              <h3 className = "trip-comunication">Trip Comunication</h3>  
+              <h3 className = "trip-comunication">Trip Communication</h3>  
                 <div className = "trip-message-list">
                 {tripInfo.messages.map(message => <Message currentUser = {currentUser} message = {message} />)}
                 </div>
