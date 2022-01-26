@@ -4,6 +4,7 @@ import '../component-styles/trip_detail.css'
 import Message from './message'
 import { Link } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import anything from '../anything'
 
 
 export default function TripDetail({currentUser}) { 
@@ -82,7 +83,7 @@ export default function TripDetail({currentUser}) {
                 </div>
                 </div>
                 <div className = "detail-map">
-                <LoadScript googleMapsApiKey={'AIzaSyDxSmnrwcZHrmkVJGjhHiilppW4wKX6nRs'}>
+                <LoadScript googleMapsApiKey={anything}>
                   <GoogleMap
                     mapContainerStyle={mapStyles}
                     zoom={14}
